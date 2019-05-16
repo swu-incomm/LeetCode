@@ -11,7 +11,7 @@ class TreeNode {
 public class Solution {
     //Recursive
     public TreeNode invertTree(TreeNode root) {
-        if(root == null) return root;
+        if (root == null) return root;
 
         TreeNode node = new TreeNode(root.val);
 
@@ -20,4 +20,19 @@ public class Solution {
 
         return node;
     }
+
+    public TreeNode invertTree2(TreeNode root) {
+        if(root == null) return root;
+
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+
+        invertTree(root.left);
+        invertTree(root.right);
+
+        return root;
+    }
+
+
 }
