@@ -25,12 +25,11 @@ public class Solution {
         dp[0] = 0;
         dp[1] = 1;
         for(int i = 2; i<= n; i++) {
-            for(int j = 0; j*j<=i;j++) {
+            for(int j = 0; j<=i;j++) {
+                if(j * j == i) dp[i] = 1;
                 dp[i] = Math.min(dp[i], dp[i-j] + dp[j]);
             }
         }
-        for(int i = 0; i<n;i++)
-            System.out.println(dp[i]);
         return dp[n];
     }
 
