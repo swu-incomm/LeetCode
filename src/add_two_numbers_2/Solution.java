@@ -14,22 +14,22 @@ Add the two numbers and return it as a linked list.
 */
 public class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode res = new ListNode(0);
-        ListNode head = res;
-        if(l1 == null && l2 == null) return null;
+        ListNode ans = new ListNode(0);
+        ListNode head = ans;
+        if(l1 == null && l2 == null) return ans;
         int check = 0;
         while(l1 != null || l2 != null) {
             int val1 = (l1 == null) ? 0 : l1.val;
             int val2 = (l2 == null) ? 0 : l2.val;
-            int temp = val1 + val2 + check;
-            check = (temp >= 10) ? temp/10 : 0;
-            temp = (temp >= 10) ? (temp%10) : temp;
-            res.next = new ListNode(temp);
-            res = res.next;
+            int sum = val1 + val2 + check;
+            head.next = new ListNode(sum%10);
+            head = head.next;
+            check = (sum >= 10) ? 1 : 0;
             l1 = (l1 == null) ? null : l1.next;
             l2 = (l2 == null) ? null : l2.next;
         }
-        if(check != 0) res.next = new ListNode(check);
-        return head.next;
+        if(check != 0) head.next = new ListNode(check);
+        return ans.next;
+    }
     }
 }
